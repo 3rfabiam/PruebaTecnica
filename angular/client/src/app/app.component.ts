@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(
     private encuestaService: EncuestaService) {
       this.encuestaService.getDatos().subscribe(resp =>{
-        console.log(resp)
+        console.log(resp.encuesta[0].Favorita)
       })
     }
 
