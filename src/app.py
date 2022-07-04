@@ -36,12 +36,14 @@ def leerEncuestas():
         totalig=datos[0][4]
         totaltt=datos[0][5]
 
+        #calculando red social favorita y menos favorita
         sql="SELECT fav, COUNT(*) FROM encuesta GROUP BY fav"
         cursor.execute(sql)
         datos=cursor.fetchall()
         favorita = datos[0][0]
         noFavorita=datos[len(datos)-1][0]
 
+        #Calculando la red social mas usada por rango de edad
         def redMasUsadaEdades(A,B):
             try:
                 sql= "SELECT SUM(fb)/MAX(id),SUM(ws)/MAX(id),SUM(tw)/MAX(id),SUM(ig)/MAX(id),SUM(tt)/MAX(id) FROM encuesta WHERE edad BETWEEN "+ str(A) +" AND "+ str(B) 
@@ -71,7 +73,7 @@ def notfound(error):
 
 @app.route('/encuesta', methods=['POST'])
 def registrarEncuesta():
-    try:
+    try: #Recibiendo datos y añadiendolo a las db
         cursor = conexion.connection.cursor()
         sql = """INSERT INTO encuesta ( email, edad, sexo, fav, fb, ws, tw, ig, tt) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')""".format(
                     request.json['email'],request.json['edad'],request.json['sexo'],
