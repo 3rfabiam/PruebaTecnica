@@ -55,13 +55,13 @@ def leerEncuestas():
                 return 'Sin Datos'
 
 
-        infoquests=[]
-        infoquest={'Encuestas Realizadas':encHechas,'Favorita':favorita,'NoFavorita':noFavorita,
+
+        infoquest={'Encuestas-realizadas':encHechas,'Favorita':favorita,'NoFavorita':noFavorita,
                 'totalFace':totalfb,'totalWhats':totalws,'totalTwi':totaltw,'totalIg':totalig,
                 'totalTik':totaltt,'social18-25':redMasUsadaEdades(18,25),'social26-33':redMasUsadaEdades(26,33),
                 'social34-40':redMasUsadaEdades(34,40),'social40+':redMasUsadaEdades(40,100)}
-        infoquests.append(infoquest)    
-        return jsonify({'encuesta':infoquests, 'message': "informacion enviada"})
+    
+        return jsonify({'encuesta':infoquest})
 
 
     
